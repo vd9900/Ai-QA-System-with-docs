@@ -1,18 +1,13 @@
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { convertText } from "../openAi/Text";
 import { Document } from "langchain/document";
-import fs from "fs";
-import path from "path";
+import { Text, videoModel } from "models/videoSchema";
 export const textSpilt = async (): Promise<Document[]> => {
-  const filePath = path.join(__dirname, "abcd.txt");
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const paragraph = fileContents.replace(/\n/g, " ");
-  //   const text = `Hi.I'm Harrison.nHow? Are? You?Okay then f f f f. This is a weird text to write, but gotta test the splittingggg some how.Bye!-H.`;
+  const result: Text[] = await videoModel.find();
   const splitter = new RecursiveCharacterTextSplitter({
     chunkSize: 1000,
     chunkOverlap: 0,
   });
 
-  const docOutput = await splitter.createDocuments([paragraph]);
+  const docOutput = await splitter.createDocuments([result[0].transcript]);
   return docOutput;
 };

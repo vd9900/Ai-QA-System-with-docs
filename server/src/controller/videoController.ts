@@ -1,17 +1,18 @@
 import { Request, Response } from "express";
-// import { convertToAudio } from "../utils/convertVideoToText";
 import { textSpilt } from "../utils/langchain/splitText";
 import { convertText } from "../utils/openAi/Text";
 import { store } from "../utils/pinecode/store";
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";
 import { query } from "../utils/pinecode/getData";
+import { convertToAudio } from "utils/ytdl-core/convertVideoToText";
+import { storeMongoDb } from "utils/mongodb/store";
 
 export const addVideo = async (req: Request, res: Response) => {
-  // const adio = await convertToAudio(
-  //   "https://www.youtube.com/watch?v=iuk77TjvfmE"
-  // );
-  const text = await textSpilt();
-  const data = await store(text);
+  await convertToAudio("https://www.youtube.com/watch?v=iuk77TjvfmE");
+  const text = await convertText();
+  await storeMongoDb(text);
+  const splitedText = await textSpilt();
+  const data = await store(splitedText);
   res.json(data);
 };
 

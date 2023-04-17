@@ -2,15 +2,17 @@ site_name: CloseAi Docs
 theme:
   name: material
   features:
-    - navigation.tabs
-    - navigation.sections
-    - toc.integrate
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.tabs.link
-    - content.code.annotation
-    - content.code.copy
+      - collapse_navigation
+      - navigation.tabs
+      - navigation.expand
+      - navigation.sections
+      - toc.integrate
+      - navigation.top
+      - search.suggest
+      - search.highlight
+      - content.tabs.link
+      - content.code.annotation
+      - content.code.copy
   language: en
   palette:
     - scheme: default
@@ -29,7 +31,7 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/vd9900
+      link: https://github.com/vd9900/Ai-QA-System-with-docs
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/vd99O0
     - icon: fontawesome/brands/linkedin

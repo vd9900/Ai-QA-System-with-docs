@@ -6,9 +6,7 @@ interface VideoFormat {
   container?: string;
 }
 
-type Filter = (format: VideoFormat) => boolean;
-
-const convertToAudio = (videoUrl: string): Promise<string> => {
+export const convertToAudio = (videoUrl: string): Promise<string> => {
   const outputPath = "audio.mp3";
   return new Promise((resolve, reject) => {
     ytdl(videoUrl, {

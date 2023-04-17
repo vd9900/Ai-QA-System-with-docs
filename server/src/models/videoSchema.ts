@@ -1,10 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Model, Document } from "mongoose";
 
-// Define video schema
+export interface Text extends Document {
+  transcript: string;
+}
+
 const videoSchema = new mongoose.Schema({
-    videoId: { type: String, required: true },
-    transcript: { type: String },
-  });
+  transcript: { type: String, required: true },
+});
 
-
-export default videoSchema
+export const videoModel: Model<Text> = mongoose.model<Text>(
+  "data",
+  videoSchema
+);
