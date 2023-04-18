@@ -1,6 +1,5 @@
 # Welcome to CloseAi
 
-
 ## Introduction
 
 - This is the documentation for `CloseAi` our question and answer system that uses OpenAI embeddings and Supabase vector database.
@@ -37,11 +36,12 @@
 
 ## How to use?
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Q-YA_dA8C20" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QxU-JrfA824" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-- The video tutorial "Building a Question Answering AI with OpenAI and Supabase" using this create questions. After watching the tutorial, you can customize the system to fit their specific needs and train it on their own data sources.
+- The video tutorial "Serivcenow Admin" using this create questions. After watching the tutorial, you can customize the system to fit their specific needs and train it on their own data sources.
+- Go to **`Home`** page and below section send your query.
 - The question and answer system can be used to answer a wide range of questions related to the data sources it is trained on, such as product information, news articles, or historical events
-- Users can ask natural language questions, such as "What are the benefits of using Supabase vector database?" or "How does the OpenAI GPT-3 language model work?"
+- Users can ask natural language questions, such as "What are the benefits of using Servicenow Admin?" or "How does the Serice Admin works?"
 - You may encounter limitations or challenges in using the OpenAI embeddings and Supabase vector database, such as the need for large amounts of training data or limitations in the accuracy of the model.
 - However, with careful tuning and customization, the question and answer system can provide a highly effective way to access and analyze large volumes of data.
 - Only ask question related this video.

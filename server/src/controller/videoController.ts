@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { textSpilt } from "../utils/langchain/splitText";
 import { convertText } from "../utils/openAi/Text";
-import { store } from "../utils/pinecode/store";
+import { store } from "../utils/supabase/store";
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";
-import { query } from "../utils/pinecode/getData";
+import { query } from "../utils/supabase/getData";
 import { convertToAudio } from "utils/ytdl-core/convertVideoToText";
 import { storeMongoDb } from "utils/mongodb/store";
 

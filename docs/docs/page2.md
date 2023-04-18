@@ -30,19 +30,6 @@ In order to follow along with the tutorial and build your own question and answe
 
 ### **Installtion**
 
-#### Front-end
-
-Create CloseAi floder and install React app with `Typescirpt` using `npm` or `yarn` and for styling `Material UI` other dependencies packages
-
-```
-npm i create-react-app client --template typescript
-```
-
-```
-npm i @emotion/react @emotion/styled @material-ui/core @mui/icons-material @mui/material axios tss-react
-```
-
-#### Back-end
 
 First create `server` folder and initialize with typescript and Install the below dependencies
 

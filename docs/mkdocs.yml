@@ -2,17 +2,17 @@ site_name: CloseAi Docs
 theme:
   name: material
   features:
-      - collapse_navigation
-      - navigation.tabs
-      - navigation.expand
-      - navigation.sections
-      - toc.integrate
-      - navigation.top
-      - search.suggest
-      - search.highlight
-      - content.tabs.link
-      - content.code.annotation
-      - content.code.copy
+    - collapse_navigation
+    - navigation.tabs
+    - navigation.expand
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
   language: en
   palette:
     - scheme: default
@@ -28,6 +28,9 @@ theme:
       primary: blue
       accent: lime
 
+extra_css:
+  - custom.css
+
 extra:
   social:
     - icon: fontawesome/brands/github-alt
@@ -35,7 +38,7 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/vd99O0
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/in/willettjames/
+      link: https://www.linkedin.com/in/vinith-devadiga-79a342231/
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
