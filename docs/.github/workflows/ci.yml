@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+          path: docs
+      - name: Install dependencies
+        run: |
+          cd docs
+          pip install mkdocs mkdocs-material
+      - name: Build and deploy documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd docs
+          mkdocs gh-deploy --force
