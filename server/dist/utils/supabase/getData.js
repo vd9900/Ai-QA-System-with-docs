@@ -31,7 +31,7 @@ const query = (query) => __awaiter(void 0, void 0, void 0, function* () {
         const model = new openai_1.OpenAI({
             modelName: "gpt-3.5-turbo",
             openAIApiKey: OPENAI_KEY,
-        });
+        }, { organization: process.env.ORGANIZATION_KEY });
         // console.log(client)
         const vectorStore = yield supabase_1.SupabaseVectorStore.fromExistingIndex(new openai_2.OpenAIEmbeddings({ openAIApiKey: OPENAI_KEY }), {
             client,

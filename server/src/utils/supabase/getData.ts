@@ -15,10 +15,13 @@ const client = createClient(supabaseUrl, supabaseKey);
 
 export const query = async (query: any) => {
   try {
-    const model = new OpenAI({
-      modelName: "gpt-3.5-turbo",
-      openAIApiKey: OPENAI_KEY,
-    });
+    const model = new OpenAI(
+      {
+        modelName: "gpt-3.5-turbo",
+        openAIApiKey: OPENAI_KEY,
+      },
+      { organization: process.env.ORGANIZATION_KEY }
+    );
 
     // console.log(client)
     const vectorStore = await SupabaseVectorStore.fromExistingIndex(
