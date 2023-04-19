@@ -19,3 +19,26 @@ export interface ClientBoxprops {
   user?: String;
   text: String;
 }
+
+export interface ResponseData {
+  text: string | null;
+}
+
+export interface Error {
+  isError: boolean;
+  error: Error | null;
+}
+
+export interface Fetch {
+  loading: boolean;
+  data: String | null;
+  error: Error;
+}
+export interface UseFetchResult {
+  loading: boolean;
+  data: {
+    text?: string;
+  };
+  error: Error | null;
+  getData: (url: string) => void;
+}

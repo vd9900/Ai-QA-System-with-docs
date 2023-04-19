@@ -4,20 +4,25 @@ import { convertText } from "../utils/openAi/Text";
 import { store } from "../utils/supabase/store";
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";
 import { query } from "../utils/supabase/getData";
-import { convertToAudio } from "utils/ytdl-core/convertVideoToText";
-import { storeMongoDb } from "utils/mongodb/store";
+import { convertToAudio } from "../utils/ytdl-core/convertVideoToText";
+import { storeMongoDb } from "../utils/mongodb/store";
 
 export const addVideo = async (req: Request, res: Response) => {
-  await convertToAudio("https://www.youtube.com/watch?v=iuk77TjvfmE");
-  const text = await convertText();
-  await storeMongoDb(text);
+  // await convertToAudio("https://www.youtube.com/watch?v=rtoZT94Wjqs");
+  // const text = await convertText();
+  // const result = storeMongoDb(text);
   const splitedText = await textSpilt();
   const data = await store(splitedText);
-  res.json(data);
+  res.json(splitedText);
 };
 
 export const getVideo = async (req: Request, res: Response) => {
-  const newQuery = req.query?.query;
-  const respone = await query(newQuery);
-  res.json(respone);
+  try {
+    const newQuery = req.query?.query;
+    console.log("rtdt", newQuery);
+    const respone = await query(newQuery);
+    res.status(200).json(respone);
+  } catch (error) {
+    res.status(500).json("something went wrong");
+  }
 };

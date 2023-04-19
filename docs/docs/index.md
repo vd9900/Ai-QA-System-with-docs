@@ -36,7 +36,7 @@
 
 ## How to use?
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QxU-JrfA824" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rtoZT94Wjqs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 - The video tutorial "Serivcenow Admin" using this create questions. After watching the tutorial, you can customize the system to fit their specific needs and train it on their own data sources.
 - Go to **`Home`** page and below section send your query.
@@ -45,3 +45,20 @@
 - You may encounter limitations or challenges in using the OpenAI embeddings and Supabase vector database, such as the need for large amounts of training data or limitations in the accuracy of the model.
 - However, with careful tuning and customization, the question and answer system can provide a highly effective way to access and analyze large volumes of data.
 - Only ask question related this video.
+
+## Upcoming features
+
+### Features
+
+- Upload any type of file, including text, PDFs, images, and more.
+- Documents are processed and stored in a vector database for efficient querying.
+- Users can ask questions using natural language queries.
+- The application will search the database for documents that are relevant to the query.
+- Documents are displayed to the user in a user-friendly format
+
+### Future Improvements
+
+- Improve the accuracy of the natural language query processing.
+- Add support for more types of documents.
+- Allow users to tag documents for better organization.
+- Add the ability to export documents as a single file.

@@ -36,9 +36,11 @@ extra:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/vd9900/Ai-QA-System-with-docs
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/vd99O0
+      link: https://twitter.com/MR_VD9900
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/vinith-devadiga-79a342231/
+    - icon: fontawesome/brands/instagram
+      link: https://instagram.com/mr.vd9900
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true

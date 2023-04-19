@@ -7,6 +7,7 @@ import { ClientBoxprops } from "../../types";
 const Client: React.FC<ClientBoxprops> = ({ text, user }) => {
   return (
     <Box
+    className={"slide-top"}
       sx={{
         p: 2,
         display: "flex",

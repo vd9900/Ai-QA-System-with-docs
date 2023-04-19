@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import Navbar from "./components/Navbar";
 import Chat from "./components/Chat";
 import { Box, PaletteMode, ThemeProvider, createTheme } from "@mui/material";
 import { getDesignTokens } from "./utils/material-ui/customTheme";

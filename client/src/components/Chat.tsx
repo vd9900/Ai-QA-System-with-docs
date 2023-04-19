@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { FormEvent } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -22,6 +22,7 @@ import SendIcon from "@mui/icons-material/Send";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import HelpIcon from "@mui/icons-material/Help";
 import HomeIcon from "@mui/icons-material/Home";
+import FormControl from "@mui/material/FormControl";
 
 import { makeStyles } from "tss-react/mui";
 import { Theme } from "@mui/material/";
@@ -29,8 +30,13 @@ import axios from "axios";
 
 import Client from "../components/Conversation/Client";
 import { ConversationContext } from "../context/conversationContext";
-import { ConverterContextProps } from "../types";
+import { ConverterContextProps, Fetch } from "../types";
 import Server from "./Conversation/Server";
+import { useFetch } from "../custom/hooks/useFetch";
+import Loading from "./Loading";
+import { FormGroup } from "@material-ui/core";
+import { isError } from "util";
+import Error from "./Error";
 const drawerWidth = 280;
 
 const useStyles = makeStyles()((theme: Theme) => {
@@ -77,11 +83,30 @@ function ResponsiveDrawer(props: any) {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  //custom hooks
+  const { loading, data, getData, error } = useFetch();
   React.useEffect(() => {
     scrollToBottom();
   }, [converterState]);
+  console.log("data is here", data);
+  console.log("error is here", error);
+  console.log("loading is here", loading);
 
-  function handleQuery() {
+  React.useEffect(() => {
+    if (!error?.isError && data.text) {
+      setConverterState((pre) => [
+        ...pre,
+        {
+          user: "server",
+          text: data.text as string,
+        },
+      ]);
+    }
+  }, [data]);
+
+  function handleQuery(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     if (!query) return;
     setConverterState((pre) => [
       ...pre,
@@ -90,17 +115,7 @@ function ResponsiveDrawer(props: any) {
         text: query,
       },
     ]);
-    axios.get(`/api/v1/chat?query=${query}`).then((response) => {
-      console.log(response);
-      setConverterState((pre) => [
-        ...pre,
-        {
-          user: "server",
-          text: response.data.text,
-        },
-      ]);
-    });
-
+    getData(`http://localhost:5000/api/v1/chat?query=${query}`);
     setQuery("");
   }
 
@@ -115,19 +130,20 @@ function ResponsiveDrawer(props: any) {
       <Divider className={classes.divider} />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton href="/">
             <HomeIcon className={classes.icons} />
+
             <ListItemText secondary={"Home"} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton href="https://vd9900.github.io/Ai-QA-System-with-docs/">
             <TextSnippetIcon className={classes.icons} />
             <ListItemText secondary={"Docs"} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton href="https://www.linkedin.com/in/vinith-devadiga-79a342231/">
             <HelpIcon className={classes.icons} />
             <ListItemText secondary={"Contact"} />
           </ListItemButton>
@@ -218,7 +234,9 @@ function ResponsiveDrawer(props: any) {
               margin: "0 auto",
             }}
           >
-            <Box sx={{ height: "100%", overflowY: "auto" }}>
+            <Box
+              sx={{ height: "100%", overflowY: "auto", padding: "20px 0 0 0" }}
+            >
               {converterState.map((chat, index) => {
                 if (chat.user === "client")
                   return (
@@ -226,13 +244,19 @@ function ResponsiveDrawer(props: any) {
                   );
                 return <Server key={index} text={chat.text} user={chat.user} />;
               })}
+              {loading && <Loading />}
+              {error?.isError && <Error />}
+
               <div ref={messagesEndRef} />
             </Box>
-            <Box
+            <FormControl
+              component={"form"}
               className={classes.InputBox}
+              onSubmit={handleQuery}
               sx={{
                 width: "100%",
                 display: "flex",
+                flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "0 12px 0 0",
@@ -251,14 +275,15 @@ function ResponsiveDrawer(props: any) {
               />
               <Button
                 sx={{ ml: 1 }}
+                disabled={loading}
                 size="large"
-                onClick={handleQuery}
+                type="submit"
                 variant="contained"
                 endIcon={<SendIcon />}
               >
                 Send
               </Button>
-            </Box>
+            </FormControl>
           </Box>
         </Box>
       </Box>

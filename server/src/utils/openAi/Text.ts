@@ -1,25 +1,20 @@
-import FormData from "form-data";
-import axios from "axios";
+
 import fs from "fs";
-import path from "path";
 
-const model = "whisper-1";
+interface Translation {
+  text: String;
+}
 
-export const convertText = async () => {
-  const filePath = path.join(__dirname, "../../assets/audio.mp3");
-  const newFormData = new FormData();
-  newFormData.append("model", model);
-  newFormData.append("file", fs.createReadStream(filePath));
-  console.log("api key", process.env.OPENAI_KEY);
-  const { data } = await axios.post(
-    "https://api.openai.com/v1/audio/transcriptions",
-    newFormData,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.OPENAI_KEY}`,
-      },
-    }
+import { Configuration, OpenAIApi } from "openai";
+import { AxiosResponse } from "axios";
+export const convertText = async (): Promise<string> => {
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+  const resp:any = await openai.createTranslation(
+    fs.createReadStream("../server/assets/audio.mp3"),
+    "whisper-1"
   );
-
-  return data;
+  return resp.data.text;
 };
