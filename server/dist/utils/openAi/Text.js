@@ -8,19 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertText = void 0;
-const fs_1 = __importDefault(require("fs"));
-const openai_1 = require("openai");
 const convertText = () => __awaiter(void 0, void 0, void 0, function* () {
-    const configuration = new openai_1.Configuration({
-        apiKey: process.env.OPENAI_KEY,
-    });
-    const openai = new openai_1.OpenAIApi(configuration);
-    const resp = yield openai.createTranslation(fs_1.default.createReadStream("../server/assets/audio.mp3"), "whisper-1");
-    return resp.data.text;
+    // const configuration = new Configuration({
+    //   apiKey: process.env.OPENAI_KEY,
+    // });
+    // const newFecth = new fetch();
+    // const fileStream = fs.createReadStream("../server/assets/audio.mp3");
+    // const response = await newFecth(fileStream);
+    // const blob = await response.blob();
+    // const file = new File([blob], "audio.mp3", { type: blob.type });
+    // const openai = new OpenAIApi(configuration);
+    // const resp: any = await openai.createTranslation(file, "whisper-1");
+    return " resp.data.text";
 });
 exports.convertText = convertText;

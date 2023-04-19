@@ -8,9 +8,9 @@ import videoRoute from "./routers/video";
 
 app.use("/api/v1", videoRoute);
 
-app.use(express.static(path.join(__dirname, "../../client/build")));
+app.use(express.static(path.join(__dirname, "../view")));
 app.get("/", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../view", "index.html"));
 });
 
 export default app;

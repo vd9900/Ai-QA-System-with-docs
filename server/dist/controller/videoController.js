@@ -11,12 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getVideo = exports.addVideo = void 0;
 const splitText_1 = require("../utils/langchain/splitText");
+const Text_1 = require("../utils/openAi/Text");
 const store_1 = require("../utils/supabase/store");
 const getData_1 = require("../utils/supabase/getData");
+const convertVideoToText_1 = require("../utils/ytdl-core/convertVideoToText");
+const store_2 = require("../utils/mongodb/store");
 const addVideo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // await convertToAudio("https://www.youtube.com/watch?v=rtoZT94Wjqs");
-    // const text = await convertText();
-    // const result = storeMongoDb(text);
+    yield (0, convertVideoToText_1.convertToAudio)("https://www.youtube.com/watch?v=rtoZT94Wjqs");
+    const text = yield (0, Text_1.convertText)();
+    const result = (0, store_2.storeMongoDb)(text);
     const splitedText = yield (0, splitText_1.textSpilt)();
     const data = yield (0, store_1.store)(splitedText);
     res.json(splitedText);
