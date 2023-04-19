@@ -2,8 +2,10 @@ import express, { Request, Response } from "express";
 const app = express();
 import dotenv from "dotenv";
 import path from "path";
-dotenv.config({ path: "./config/config.env" });
+import cors from "cors";
 
+dotenv.config({ path: "./config/config.env" });
+app.use(cors());
 import videoRoute from "./routers/video";
 
 app.use("/api/v1", videoRoute);
