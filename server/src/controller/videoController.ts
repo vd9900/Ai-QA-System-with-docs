@@ -21,6 +21,7 @@ export const getVideo = async (req: Request, res: Response) => {
     const newQuery = req.query?.query;
     console.log("rtdt", newQuery);
     const respone = await query(newQuery);
+    if (!respone) return res.status(500).json("something went wrong");
     res.status(200).json(respone);
   } catch (error) {
     res.status(500).json("something went wrong");

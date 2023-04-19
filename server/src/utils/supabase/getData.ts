@@ -7,6 +7,7 @@ import dotenv, { config } from "dotenv";
 
 dotenv.config();
 console.log("first", process.env.OPENAI_KEY);
+console.log(process.env.OPENAI_KEY);
 const OPENAI_KEY = process.env.OPENAI_KEY || "";
 const supabaseUrl = process.env.SUPABASE_URL || "";
 const supabaseKey = process.env.SUPABASE_KEY || "";
@@ -39,6 +40,6 @@ export const query = async (query: any) => {
 
     return res;
   } catch (error) {
-    
+    console.log(error);
   }
 };

@@ -10,22 +10,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getVideo = exports.addVideo = void 0;
-// import { convertToAudio } from "../utils/convertVideoToText";
 const splitText_1 = require("../utils/langchain/splitText");
-const store_1 = require("../utils/pinecode/store");
-const getData_1 = require("../utils/pinecode/getData");
+const store_1 = require("../utils/supabase/store");
+const getData_1 = require("../utils/supabase/getData");
 const addVideo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const adio = await convertToAudio(
-    //   "https://www.youtube.com/watch?v=iuk77TjvfmE"
-    // );
-    const text = yield (0, splitText_1.textSpilt)();
-    const data = yield (0, store_1.store)(text);
-    res.json(data);
+    // await convertToAudio("https://www.youtube.com/watch?v=rtoZT94Wjqs");
+    // const text = await convertText();
+    // const result = storeMongoDb(text);
+    const splitedText = yield (0, splitText_1.textSpilt)();
+    const data = yield (0, store_1.store)(splitedText);
+    res.json(splitedText);
 });
 exports.addVideo = addVideo;
 const getVideo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.query);
-    const respone = yield (0, getData_1.query)();
-    res.json(respone);
+    var _a;
+    try {
+        const newQuery = (_a = req.query) === null || _a === void 0 ? void 0 : _a.query;
+        console.log("rtdt", newQuery);
+        const respone = yield (0, getData_1.query)(newQuery);
+        if (!respone)
+            return res.status(500).json("something went wrong");
+        res.status(200).json(respone);
+    }
+    catch (error) {
+        res.status(500).json("something went wrong");
+    }
 });
 exports.getVideo = getVideo;

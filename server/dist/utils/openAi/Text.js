@@ -13,22 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertText = void 0;
-const form_data_1 = __importDefault(require("form-data"));
-const axios_1 = __importDefault(require("axios"));
 const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-const model = "whisper-1";
+const openai_1 = require("openai");
 const convertText = () => __awaiter(void 0, void 0, void 0, function* () {
-    const filePath = path_1.default.join(__dirname, "../../assets/audio.mp3");
-    const newFormData = new form_data_1.default();
-    newFormData.append("model", model);
-    newFormData.append("file", fs_1.default.createReadStream(filePath));
-    console.log("api key", process.env.OPENAI_KEY);
-    const { data } = yield axios_1.default.post("https://api.openai.com/v1/audio/transcriptions", newFormData, {
-        headers: {
-            Authorization: `Bearer ${process.env.OPENAI_KEY}`,
-        },
+    const configuration = new openai_1.Configuration({
+        apiKey: process.env.OPENAI_KEY,
     });
-    return data;
+    const openai = new openai_1.OpenAIApi(configuration);
+    const resp = yield openai.createTranslation(fs_1.default.createReadStream("../server/assets/audio.mp3"), "whisper-1");
+    return resp.data.text;
 });
 exports.convertText = convertText;

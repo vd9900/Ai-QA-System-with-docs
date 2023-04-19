@@ -89,9 +89,6 @@ function ResponsiveDrawer(props: any) {
   React.useEffect(() => {
     scrollToBottom();
   }, [converterState]);
-  console.log("data is here", data);
-  console.log("error is here", error);
-  console.log("loading is here", loading);
 
   React.useEffect(() => {
     if (!error?.isError && data.text) {
@@ -115,7 +112,7 @@ function ResponsiveDrawer(props: any) {
         text: query,
       },
     ]);
-    getData(`http://localhost:5000/api/v1/chat?query=${query}`);
+    getData(`/api/v1/chat?query=${query}`);
     setQuery("");
   }
 
