@@ -25,7 +25,10 @@ export const query = async (query: any) => {
 
     // console.log(client)
     const vectorStore = await SupabaseVectorStore.fromExistingIndex(
-      new OpenAIEmbeddings({ openAIApiKey: OPENAI_KEY }),
+      new OpenAIEmbeddings(
+        { openAIApiKey: OPENAI_KEY },
+        { organization: process.env.ORGANIZATION_KEY }
+      ),
       {
         client,
         tableName: "documents",
