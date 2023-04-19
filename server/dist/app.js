@@ -10,8 +10,8 @@ const path_1 = __importDefault(require("path"));
 dotenv_1.default.config({ path: "./config/config.env" });
 const video_1 = __importDefault(require("./routers/video"));
 app.use("/api/v1", video_1.default);
-app.use(express_1.default.static(path_1.default.join(__dirname, "../../client/build")));
+app.use(express_1.default.static(path_1.default.join(__dirname, "../view")));
 app.get("/", (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, "../../client/build", "index.html"));
+    res.sendFile(path_1.default.join(__dirname, "../view", "index.html"));
 });
 exports.default = app;
